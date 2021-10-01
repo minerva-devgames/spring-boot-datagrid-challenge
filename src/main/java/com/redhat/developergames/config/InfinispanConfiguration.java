@@ -1,6 +1,8 @@
 package com.redhat.developergames.config;
 
+import org.infinispan.spring.remote.session.configuration.EnableInfinispanRemoteHttpSession;
 import org.infinispan.spring.starter.remote.InfinispanRemoteCacheCustomizer;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
@@ -10,6 +12,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 @Configuration
+@EnableCaching
+@EnableInfinispanRemoteHttpSession
 public class InfinispanConfiguration {
 
    @Bean
