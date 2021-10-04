@@ -1,6 +1,5 @@
 package com.redhat.developergames.config;
 
-import org.infinispan.spring.remote.session.configuration.EnableInfinispanRemoteHttpSession;
 import org.infinispan.spring.starter.remote.InfinispanRemoteCacheCustomizer;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
@@ -13,7 +12,6 @@ import java.net.URISyntaxException;
 
 @Configuration
 @EnableCaching
-@EnableInfinispanRemoteHttpSession
 public class InfinispanConfiguration {
 
    @Bean
@@ -22,9 +20,12 @@ public class InfinispanConfiguration {
       return b -> {
          // Configure the weather cache to be created if it does not exist in the first call
          URI weatherCacheConfigUri = cacheConfigURI("weatherCache.xml");
+         URI sessionsCacheConfigUri = cacheConfigURI("sessionsCache.xml");
 
          b.remoteCache("weather")
                  .configurationURI(weatherCacheConfigUri);
+         b.remoteCache("sessions")
+                 .configurationURI(sessionsCacheConfigUri);
       };
    }
 
